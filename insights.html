@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Insights — Via Elysium</title>
+  <meta name="description" content="Explore Via Elysium’s research, briefs, and stories on mental health." />
+  <link rel="icon" href="https://drive.google.com/uc?export=view&id=13O2Kq3cNCmlf_KOv3B0LcQCL0rhu50JH" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --muted: #64748b;
+      --accent: #1e4d4a;
+      --accent-2: #d97706;
+      --highlight: #10b981;
+      --maxw: 1280px;
+      --radius: 16px;
+      --gap: 32px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
+    a:hover { color: var(--highlight); }
+    img { max-width: 100%; display: block; border-radius: var(--radius); }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 24px; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    .animate-text { animation: fadeInUp 1s ease-out forwards; }
+    .animate-slide-left { animation: slideInLeft 1s ease-out forwards; }
+    .animate-slide-right { animation: slideInRight 1s ease-out forwards; }
+    .animate-btn { transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; }
+    .animate-btn:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+    .rotate-slow { animation: rotateSlow 30s linear infinite; }
+    @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .card { background: #fff; border-radius: var(--radius); padding: 32px; border: 1px solid #e5e7eb; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, rotate 0.3s ease; }
+    .card:hover { transform: translateY(-10px) rotate(1deg); }
+    header {
+      position: sticky; top: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); z-index: 50; border-bottom: 1px solid #e5e7eb;
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; padding: 24px var(--gap); max-width: var(--maxw); margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 20px; }
+    .logo {
+      width: 64px; height: 64px; border-radius: var(--radius); background: linear-gradient(135deg, var(--accent), #6ee7b7);
+      display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 28px;
+      box-shadow: 0 8px 20px rgba(47, 111, 97, 0.3);
+    }
+    .site-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem; }
+    nav ul { display: flex; gap: 32px; list-style: none; align-items: center; }
+    nav a { font-size: 1.05rem; color: var(--muted); font-weight: 500; }
+    nav a:hover { color: var(--highlight); }
+    .cta {
+      background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 12px; font-weight: 600; }
+    .cta:hover { background: #14403d; }
+    .cta-outline {
+      border: 2px solid var(--text); color: var(--text); padding: 12px 24px; border-radius: 12px; font-weight: 600; }
+    .cta-outline:hover { background: var(--text); color: #fff; }
+    section { padding: 100px var(--gap); }
+    h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 24px; }
+    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-card { display: flex; align-items: center; padding: 24px; }
+    .pub-card img { width: 72px; height: 72px; object-fit: cover; margin-right: 20px; border-radius: 50%; }
+    .pub-content { flex: 1; }
+    .pub-content strong { font-family: 'Playfair Display', serif; }
+    footer { padding: 80px var(--gap); background: #f1f5f9; border-top: 1px solid #e5e7eb; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; }
+    .social-icons a { margin-right: 16px; font-size: 1.1rem; }
+    @media (min-width: 1024px) {
+      .nav { padding: 32px var(--gap); }
+      nav ul { gap: 40px; }
+    }
+    @media (max-width: 767px) {
+      .nav { flex-direction: column; align-items: flex-start; gap: 24px; }
+      .site-title { font-size: 1.3rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .pub-card { flex-direction: column; align-items: flex-start; }
+      .pub-card img { margin-bottom: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand animate-slide-left">
+        <div class="logo rotate-slow">VE</div>
+        <div>
+          <div class="site-title">Via Elysium</div>
+          <div class="muted" style="font-size:0.95rem">Mental Health Without Borders</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="what.html">What We Do</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="insights.html">Insights</a></li>
+          <li><a href="support.html">Support Us</a></li>
+          <li><a href="involved.html">Get Involved</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a class="cta animate-btn" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="wrap card">
+      <h2 class="animate-slide-left">Insights</h2>
+      <p class="muted animate-text">Explore our research, briefs, and stories.</p>
+      <div class="pub-list" style="margin-top:28px">
+        <div class="pub-card card animate-text">
+          <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=400&auto=format&fit=crop" alt="Policy Brief" />
+          <div class="pub-content">
+            <strong>Policy Brief: Mental Health & Mobility</strong>
+            <div class="muted" style="font-size:0.95rem">Recommendations for stakeholders</div>
+          </div>
+          <a class="cta-outline animate-btn" href="support.html">Download</a>
+        </div>
+        <div class="pub-card card animate-text">
+          <img src="https://images.unsplash.com/photo-1516321310762-9dced2b02e65?q=80&w=400&auto=format&fit=crop" alt="Research Note" />
+          <div class="pub-content">
+            <strong>Research Note: NLI Outcomes</strong>
+            <div class="muted" style="font-size:0.95rem">Pilot results and methodology</div>
+          </div>
+          <a class="cta-outline animate-btn" href="support.html">Download</a>
+        </div>
+        <div class="pub-card card animate-text">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=400&auto=format&fit=crop" alt="Blog" />
+          <div class="pub-content">
+            <strong>Blog: Finding Belonging</strong>
+            <div class="muted" style="font-size:0.95rem">Practical advice and stories</div>
+          </div>
+          <a class="cta-outline animate-btn" href="support.html">Read</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap footer-grid animate-text">
+      <div>
+        <div style="display:flex;align-items:center;gap:20px;margin-bottom:20px">
+          <div class="logo rotate-slow" style="width:56px;height:56px">VE</div>
+          <div>
+            <strong>Via Elysium</strong><br>
+            <div class="muted" style="font-size:0.95rem">Mental Health Without Borders</div>
+          </div>
+        </div>
+        <p class="muted">A nonprofit dedicated to mental health for expats and multicultural communities. Connect with us to support or collaborate.</p>
+        <div class="social-icons" style="display:flex;gap:20px;margin-top:24px">
+          <a class="muted animate-btn" href="https://linkedin.com" aria-label="LinkedIn">LinkedIn</a>
+          <a class="muted animate-btn" href="https://instagram.com" aria-label="Instagram">Instagram</a>
+          <a class="muted animate-btn" href="https://facebook.com" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <strong>Contact</strong>
+        <div class="muted" style="margin-top:20px">
+          info@viaelysium.org<br>
+          Vantaa, Finland<br>
+          <div style="margin-top:20px"><a class="cta-outline animate-btn" href="contact.html">Contact Form</a></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function(){
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-text', 'animate-slide-left', 'animate-slide-right');
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.animate-text, .animate-slide-left, .animate-slide-right').forEach(el => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
