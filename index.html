@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Via Elysium — Mental Health Without Borders</title>
   <meta name="description" content="Via Elysium — nonprofit think tank & institute for expat and multicultural mental health, research, and NLI therapies." />
-  <link rel="icon" href="https://drive.google.com/uc?export=view&id=13O2Kq3cNCmlf_KOv3B0LcQCL0rhu50JH" type="image/png">
+  <link rel="icon" href="images/favicon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -37,6 +37,7 @@
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
     .animate-text { animation: fadeInUp 1s ease-out forwards; }
     .animate-slide-left { animation: slideInLeft 1s ease-out forwards; }
     .animate-slide-right { animation: slideInRight 1s ease-out forwards; }
@@ -44,7 +45,6 @@
     .animate-btn:hover { transform: scale(1.1); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
     .rotate-slow { animation: rotateSlow 30s linear infinite; }
     @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .card { background: #fff; border-radius: var(--radius); padding: 32px; border: 1px solid #e5e7eb; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, rotate 0.3s ease; }
     .card:hover { transform: translateY(-10px) rotate(1deg); }
     header {
       position: sticky; top: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); z-index: 50; border-bottom: 1px solid #e5e7eb;
@@ -70,7 +70,7 @@
     .cta-outline:hover { background: #fff; color: var(--accent); }
     .hero {
       display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; padding: 100px var(--gap);
-      background: url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+      background: url('images/happy.png') center/cover no-repeat;
       border-radius: var(--radius); color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden;
     }
     .hero::before {
@@ -81,16 +81,14 @@
     .headline { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1.2; }
     .lead { color: #f1f5f9; font-size: 1.2rem; max-width: 640px; }
     .hero-ctas { display: flex; gap: 24px; }
-    section { padding: 100px var(--gap); }
-    h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 24px; }
-    .grid { display: grid; gap: 32px; }
-    .three { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .slideshow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    .slideshow-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; animation: fade 9s infinite; }
+    .slideshow-slide:nth-child(1) { background-image: url('images/happy.png'); animation-delay: 0s; }
+    .slideshow-slide:nth-child(2) { background-image: url('images/meditation.jpg'); animation-delay: 3s; }
+    .slideshow-slide:nth-child(3) { background-image: url('images/nature.jpg'); animation-delay: 6s; }
     footer { padding: 80px var(--gap); background: #f1f5f9; border-top: 1px solid #e5e7eb; }
     .footer-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; }
     .social-icons a { margin-right: 16px; font-size: 1.1rem; }
-    .cta-outline-dark {
-      border: 2px solid var(--text); color: var(--text); padding: 12px 24px; border-radius: 12px; font-weight: 600; }
-    .cta-outline-dark:hover { background: var(--text); color: #fff; }
     @media (min-width: 1024px) {
       .hero { grid-template-columns: 1fr 1fr; }
       .nav { padding: 32px var(--gap); }
@@ -107,6 +105,11 @@
   </style>
 </head>
 <body>
+  <div class="slideshow-container">
+    <div class="slideshow-slide"></div>
+    <div class="slideshow-slide"></div>
+    <div class="slideshow-slide"></div>
+  </div>
   <header>
     <div class="nav">
       <div class="brand animate-slide-left">
@@ -134,8 +137,8 @@
     <section class="hero wrap" id="home">
       <div class="hero-inner">
         <div class="eyebrow animate-text">Via Elysium — Institute & Nonprofit</div>
-        <h1 class="headline animate-text">Mental Health Without Borders<br><span style="color:#6ee7b7">Empowering expats, students, and multicultural communities.</span></h1>
-        <p class="lead animate-text">We combine cutting-edge research, Neuro-Linguistic Intelligence (NLI) therapies, and nature-based practices to deliver transformative mental health solutions for those living across cultures.</p>
+        <h1 class="headline animate-text">Mental Health Without Borders<br><span style="color:#6ee7b7">Supporting expats, students, and multicultural communities</span></h1>
+        <p class="lead animate-text">We provide innovative mental health solutions through research, Neuro-Linguistic Intelligence (NLI) therapies, and nature-based practices.</p>
         <div class="hero-ctas animate-text">
           <a class="cta animate-btn" href="services.html">Explore Services</a>
           <a class="cta-outline animate-btn" href="insights.html">Read Insights</a>
@@ -143,43 +146,7 @@
         <div class="muted animate-text" style="margin-top:28px">Quick actions: <a href="projects.html">Projects</a> • <a href="support.html">Support</a> • <a href="involved.html">Volunteer</a></div>
       </div>
       <div class="hero-visual">
-        <img src="https://images.unsplash.com/photo-1545205597-3D9d02c29597?q=80&w=2070&auto=format&fit=crop" alt="Mental Health Relaxation" style="border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,0.25)" class="animate-slide-right" />
-      </div>
-    </section>
-    <section class="wrap card">
-      <h2 class="animate-slide-left">Our Mission</h2>
-      <p class="muted animate-text">Via Elysium is dedicated to breaking down barriers to mental health care for expats, international students, and multicultural communities. Through innovative therapies, community-building, and research, we aim to foster resilience and well-being worldwide.</p>
-    </section>
-    <section class="wrap card">
-      <h2 class="animate-slide-left">Key Initiatives</h2>
-      <div class="grid three" style="margin-top:32px">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c3a2?q=80&w=400&auto=format&fit=crop" alt="Counseling" style="margin-bottom:20px" />
-          <h3>Counseling Services</h3>
-          <p class="muted">Culturally sensitive therapy tailored for individuals and groups navigating life abroad.</p>
-          <a class="cta-outline-dark animate-btn" href="services.html">Learn More</a>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=400&auto=format&fit=crop" alt="Community Support" style="margin-bottom:20px" />
-          <h3>Community Support</h3>
-          <p class="muted">Creating safe spaces and support networks for diverse communities worldwide.</p>
-          <a class="cta-outline-dark animate-btn" href="involved.html">Join Us</a>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=400&auto=format&fit=crop" alt="Research & Advocacy" style="margin-bottom:20px" />
-          <h3>Research & Advocacy</h3>
-          <p class="muted">Advancing global mental health through research and policy advocacy.</p>
-          <a class="cta-outline-dark animate-btn" href="projects.html">Explore Projects</a>
-        </div>
-      </div>
-    </section>
-    <section class="wrap card">
-      <h2 class="animate-slide-left">Get Involved</h2>
-      <p class="muted animate-text">Join our mission to make mental health care accessible to all. Whether through donations, volunteering, or partnerships, your support makes a difference.</p>
-      <div style="display:flex;gap:24px;margin-top:28px" class="animate-text">
-        <a class="cta animate-btn" href="support.html">Donate Now</a>
-        <a class="cta-outline-dark animate-btn" href="involved.html">Volunteer</a>
-        <a class="cta-outline-dark animate-btn" href="contact.html">Contact Us</a>
+        <img src="images/happy.png" alt="Mental Health Relaxation" style="border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,0.25)" class="animate-slide-right" />
       </div>
     </section>
   </main>
@@ -205,7 +172,7 @@
         <div class="muted" style="margin-top:20px">
           info@viaelysium.org<br>
           Vantaa, Finland<br>
-          <div style="margin-top:20px"><a class="cta-outline-dark animate-btn" href="contact.html">Contact Form</a></div>
+          <div style="margin-top:20px"><a class="cta-outline animate-btn" href="contact.html">Contact Form</a></div>
         </div>
       </div>
     </div>
