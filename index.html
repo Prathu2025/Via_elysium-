@@ -37,7 +37,7 @@
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideFade { 0% { opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
     .animate-text { animation: fadeInUp 1s ease-out forwards; }
     .animate-slide-left { animation: slideInLeft 1s ease-out forwards; }
     .animate-slide-right { animation: slideInRight 1s ease-out forwards; }
@@ -68,9 +68,16 @@
     .cta-outline {
       border: 2px solid #fff; color: #fff; padding: 12px 24px; border-radius: 12px; font-weight: 600; }
     .cta-outline:hover { background: #fff; color: var(--accent); }
+    .bg-slideshow {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
+    }
+    .bg-slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out;
+    }
+    .bg-slide.active { opacity: 1; }
     .hero {
       display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; padding: 100px var(--gap);
-      background: url('images/happy.png') center/cover no-repeat;
+      background: url('images/hero-relaxation.jpg') center/cover no-repeat;
       border-radius: var(--radius); color: #fff; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden;
     }
     .hero::before {
@@ -81,11 +88,6 @@
     .headline { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1.2; }
     .lead { color: #f1f5f9; font-size: 1.2rem; max-width: 640px; }
     .hero-ctas { display: flex; gap: 24px; }
-    .slideshow-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-    .slideshow-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; animation: fade 9s infinite; }
-    .slideshow-slide:nth-child(1) { background-image: url('images/happy.png'); animation-delay: 0s; }
-    .slideshow-slide:nth-child(2) { background-image: url('images/meditation.jpg'); animation-delay: 3s; }
-    .slideshow-slide:nth-child(3) { background-image: url('images/nature.jpg'); animation-delay: 6s; }
     footer { padding: 80px var(--gap); background: #f1f5f9; border-top: 1px solid #e5e7eb; }
     .footer-grid { display: grid; grid-template-columns: 1fr 300px; gap: 48px; }
     .social-icons a { margin-right: 16px; font-size: 1.1rem; }
@@ -105,10 +107,10 @@
   </style>
 </head>
 <body>
-  <div class="slideshow-container">
-    <div class="slideshow-slide"></div>
-    <div class="slideshow-slide"></div>
-    <div class="slideshow-slide"></div>
+  <div class="bg-slideshow">
+    <div class="bg-slide active" style="background-image: url('images/happy.png');"></div>
+    <div class="bg-slide" style="background-image: url('images/meditation.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('images/nature.jpg');"></div>
   </div>
   <header>
     <div class="nav">
@@ -146,7 +148,7 @@
         <div class="muted animate-text" style="margin-top:28px">Quick actions: <a href="projects.html">Projects</a> • <a href="support.html">Support</a> • <a href="involved.html">Volunteer</a></div>
       </div>
       <div class="hero-visual">
-        <img src="images/happy.png" alt="Mental Health Relaxation" style="border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,0.25)" class="animate-slide-right" />
+        <img src="images/hero-relaxation.jpg" alt="Mental Health Relaxation" style="border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,0.25)" class="animate-slide-right" />
       </div>
     </section>
   </main>
@@ -188,6 +190,15 @@
       }, { threshold: 0.15 });
       document.querySelectorAll('.animate-text, .animate-slide-left, .animate-slide-right').forEach(el => observer.observe(el));
     })();
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.bg-slide');
+    function showSlide() {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[slideIndex].classList.add('active');
+      slideIndex = (slideIndex + 1) % slides.length;
+    }
+    showSlide();
+    setInterval(showSlide, 3000);
   </script>
 </body>
 </html>
