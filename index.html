@@ -37,7 +37,6 @@
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-    @keyframes slideFade { 0% { opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
     .animate-text { animation: fadeInUp 1s ease-out forwards; }
     .animate-slide-left { animation: slideInLeft 1s ease-out forwards; }
     .animate-slide-right { animation: slideInRight 1s ease-out forwards; }
@@ -102,7 +101,7 @@
 </head>
 <body>
   <div class="bg-slideshow">
-    <div class="bg-slide active" style="background-image: url('images/happy.png');"></div>
+    <div class="bg-slide" style="background-image: url('images/happy.png');"></div>
     <div class="bg-slide" style="background-image: url('images/meditation.jpg');"></div>
     <div class="bg-slide" style="background-image: url('images/nature.jpg');"></div>
   </div>
@@ -182,15 +181,29 @@
       }, { threshold: 0.15 });
       document.querySelectorAll('.animate-text, .animate-slide-left, .animate-slide-right').forEach(el => observer.observe(el));
     })();
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.bg-slide');
-    function showSlide() {
-      slides.forEach(slide => slide.classList.remove('active'));
-      slides[slideIndex].classList.add('active');
-      slideIndex = (slideIndex + 1) % slides.length;
-    }
-    showSlide();
-    setInterval(showSlide, 3000);
+    (function(){
+      const slides = document.querySelectorAll('.bg-slide');
+      let slideIndex = 0;
+      function showSlide() {
+        if (slides.length === 0) {
+          console.error('No slideshow images found');
+          return;
+        }
+        slides.forEach((slide, index) => {
+          slide.classList.toggle('active', index === slideIndex);
+        });
+        slideIndex = (slideIndex + 1) % slides.length;
+      }
+      // Preload images to check if they load
+      const imageUrls = ['images/happy.png', 'images/meditation.jpg', 'images/nature.jpg'];
+      imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+        img.onerror = () => console.error(`Failed to load image: ${url}`);
+      });
+      showSlide();
+      setInterval(showSlide, 3000);
+    })();
   </script>
 </body>
 </html>
